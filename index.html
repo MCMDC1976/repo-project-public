@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="McLean County Metal Detecting Club in Bloomington, Illinois. Explore local history, learn responsible detecting, and connect with fellow detectorists.">
+  <title>McLean County Metal Detecting Club | Bloomington, IL</title>
+  <style>
+    :root {
+      --ink: #f4f1e8;
+      --muted: #c6c8bd;
+      --gold: #e7b85d;
+      --rust: #c76d45;
+      --forest: #142923;
+      --deep: #0b1714;
+      --panel: #1c332b;
+      --line: #3c5147;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--deep);
+      color: var(--ink);
+      font: 16px / 1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, 92%); margin: auto; }
+
+    .topbar {
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.094);
+      background: rgb(11, 23, 20);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+    .mark {
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      color: rgb(20, 35, 29);
+      font-size: 22px;
+    }
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+    .links {
+      display: flex;
+      gap: 23px;
+      align-items: center;
+    }
+    .links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .links a:hover { color: var(--gold); }
+
+    .button {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 5px;
+      background: var(--gold);
+      color: rgb(21, 37, 30);
+      text-decoration: none;
+      font-weight: 800;
+      border: 0;
+    }
+    .button:hover { filter: brightness(1.08); }
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,0.376);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(at 76% 38%, rgb(85, 103, 70) 0%, rgb(41, 62, 49) 25%, transparent 58%), linear-gradient(120deg, rgb(11, 23, 20) 10%, rgb(23, 45, 36) 65%, rgb(41, 58, 42));
+      padding: 92px 0 82px;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(231,184,93,0.208);
+      border-radius: 50%;
+      right: -80px;
+      top: -70px;
+      box-shadow: rgba(231,184,93,0.047) 0 0 0 36px, rgba(231,184,93,0.03) 0 0 0 78px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 45px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 70px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+      margin: 18px 0 22px;
+      max-width: 720px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 590px;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .hero-art {
+      min-height: 350px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+    .sun {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      background: linear-gradient(135deg, rgb(232,196,119), rgb(173,108,59));
+      border-radius: 50%;
+      opacity: 0.9;
+      right: 40px;
+      top: 25px;
+    }
+    .rings {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border: 2px solid rgba(244,220,161,0.42);
+      border-radius: 50%;
+      right: 10px;
+      top: -5px;
+    }
+    .detector {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 400px;
+      filter: drop-shadow(rgba(0,0,0,0.467) 0 22px 22px);
+    }
+
+    .stats {
+      background: rgb(16,31,26);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 23px 0;
+    }
+    .stat {
+      padding: 0 25px;
+      border-right: 1px solid var(--line);
+    }
+    .stat:first-child { padding-left: 0; }
+    .stat:last-child { border: 0; }
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .stat span { color: var(--muted); font-size: 14px; }
+
+    .section { padding: 78px 0; }
+    .section-head { max-width: 650px; margin-bottom: 35px; }
+    .section h2 {
+      font-size: clamp(30px, 4vw, 43px);
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 12px 0;
+    }
+    .section p { color: var(--muted); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .card {
+      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .card .icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      background: rgba(231,184,93,0.106);
+      border-radius: 8px;
+      font-size: 22px;
+    }
+    .card h3 { margin: 17px 0 8px; font-size: 20px; }
+    .card p { margin: 0; font-size: 15px; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 55px;
+      align-items: center;
+    }
+    .feature-panel {
+      padding: 34px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, rgb(38,63,49), rgb(23,42,34));
+      border: 1px solid var(--line);
+    }
+    .feature-panel h3 { font-size: 25px; margin: 0 0 14px; }
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0;
+    }
+    .checklist li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.094);
+      color: var(--muted);
+    }
+    .checklist li::before {
+      content: "✓";
+      color: var(--gold);
+      font-weight: 900;
+      margin-right: 12px;
+    }
+    .quote {
+      font-size: 25px;
+      line-height: 1.35;
+      color: var(--ink);
+      font-weight: 650;
+    }
+
+    .callout {
+      background: var(--gold);
+      color: rgb(24,39,31);
+      padding: 52px 0;
+    }
+    .callout .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .callout h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.1;
+      margin: 0 0 10px;
+    }
+    .callout p {
+      margin: 0;
+      color: rgb(52,65,55);
+    }
+    .callout .button {
+      background: rgb(20,37,30);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .contact-box {
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: rgb(18,34,28);
+      border-radius: 8px;
+    }
+    .contact-box h3 { margin-top: 0; }
+    .note {
+      font-size: 13px;
+      color: rgb(174,183,173);
+    }
+
+    .footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 780px) {
+      .links { display: none; }
+      .hero { padding: 65px 0 45px; }
+      .hero-grid, .split, .contact-grid { grid-template-columns: 1fr; }
+      .hero-art { min-height: 260px; order: -1; }
+      .sun { width: 190px; height: 190px; right: calc(50% - 95px); top: 15px; }
+      .rings { width: 235px; height: 235px; right: calc(50% - 117px); top: -7px; }
+      .detector { max-width: 290px; }
+      .cards { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr; gap: 14px; }
+      .stat, .stat:first-child { padding: 0; border: 0; }
+      .section { padding: 55px 0; }
+      .callout .inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home">
+        <span class="mark" aria-hidden="true">⌖</span>
+        <span>McLean County<small>Metal Detecting Club</small></span>
+      </a>
+      <nav class="links" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#activities">What We Do</a>
+        <a href="#ethics">Code of Ethics</a>
+        <a href="#contact">Get Involved</a>
+      </nav>
+      <a class="button" href="#contact">Join the Hunt</a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Bloomington • Central Illinois</div>
+          <h1>Every signal has a <em>story.</em></h1>
+          <p>Connecting people, uncovering local history, and enjoying the outdoors—one thoughtful discovery at a time.</p>
+          <div class="actions">
+            <a class="button" href="#contact">Connect With the Club</a>
+            <a class="button secondary" href="#about">Discover Our Club</a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Illustration of a metal detector">
+          <div class="sun"></div>
+          <div class="rings"></div>
+          <svg class="detector" viewBox="0 0 420 360" role="img" aria-label="Metal detector illustration">
+            <defs>
+              <linearGradient id="shaft" x1="0" x2="1">
+                <stop stop-color="#d4d7ca"></stop>
+                <stop offset=".5" stop-color="#f4f1e8"></stop>
+                <stop offset="1" stop-color="#858e81"></stop>
+              </linearGradient>
+            </defs>
+            <g transform="rotate(-23 210 180)">
+              <path d="M210 45 L210 278" stroke="#17251e" stroke-width="17" stroke-linecap="round"></path>
+              <path d="M210 45 L210 278" stroke="url(#shaft)" stroke-width="9" stroke-linecap="round"></path>
+              <path d="M184 49 L236 49 L247 66 L173 66Z" fill="#202a24" stroke="#e7b85d" stroke-width="2"></path>
+              <rect x="179" y="65" width="62" height="32" rx="7" fill="#252f28" stroke="#d6a951" stroke-width="2"></rect>
+              <rect x="190" y="72" width="40" height="11" rx="2" fill="#8fa28b"></rect>
+              <path d="M209 274 C166 275 126 290 123 311 C120 331 161 340 210 338 C259 336 294 323 288 306 C282 287 246 276 209 274Z" fill="none" stroke="#202a24" stroke-width="18"></path>
+              <path d="M209 274 C166 275 126 290 123 311 C120 331 161 340 210 338 C259 336 294 323 288 306 C282 287 246 276 209 274Z" fill="none" stroke="#e7b85d" stroke-width="5"></path>
+              <path d="M202 38 L202 19 Q202 11 211 11 L241 11" fill="none" stroke="#202a24" stroke-width="14" stroke-linecap="round"></path>
+              <path d="M202 38 L202 19 Q202 11 211 11 L241 11" fill="none" stroke="#d5d8ca" stroke-width="7" stroke-linecap="round"></path>
+            </g>
+            <g fill="#f5d58b">
+              <circle cx="94" cy="92" r="4"></circle>
+              <circle cx="320" cy="125" r="3"></circle>
+              <path d="M309 214l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="wrap stats-grid">
+        <div class="stat">
+          <strong>Local roots</strong>
+          <span>Bloomington and McLean County, Illinois</span>
+        </div>
+        <div class="stat">
+          <strong>Shared curiosity</strong>
+          <span>History, outdoors, and the thrill of discovery</span>
+        </div>
+        <div class="stat">
+          <strong>Responsible detecting</strong>
+          <span>Respect for land, people, and the past</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="about">
+      <div class="wrap split">
+        <div>
+          <div class="eyebrow">About the club</div>
+          <h2>Good people. Great stories. A little dirt.</h2>
+          <p>The McLean County Metal Detecting Club is a community for people who enjoy metal detecting and the history that can surface beneath our feet. Whether you’re an experienced detectorist or just curious about getting started, there’s always something new to learn.</p>
+          <p>Our aim is to make the hobby welcoming, educational, and respectful of the places we explore.</p>
+        </div>
+
+        <div class="feature-panel">
+          <div class="quote">“The best find is the one that connects us to a story worth preserving.”</div>
+          <ul class="checklist">
+            <li>Learn from fellow hobbyists</li>
+            <li>Trade tips, techniques, and stories</li>
+            <li>Explore local history with care</li>
+            <li>Help keep the hobby welcoming</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="activities" style="background:#101f1a;">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">More than a signal</div>
+          <h2>Find your kind of adventure.</h2>
+          <p>Metal detecting is about more than what turns up in the ground. It’s the people you meet, the skills you build, and the history you help bring to light.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true">⌁</div>
+            <h3>Learn the hobby</h3>
+            <p>Swap advice on detector settings, search coils, research, and techniques—whether you’re new or have years of experience.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">⌂</div>
+            <h3>Explore local history</h3>
+            <p>Use maps, archives, and curiosity to better understand the stories connected to a place before you ever begin a search.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon" aria-hidden="true">✦</div>
+            <h3>Share the discoveries</h3>
+            <p>Celebrate interesting finds, compare notes, and learn how to document and care for objects that offer a glimpse of the past.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ethics">
+      <div class="wrap split">
+        <div>
+          <div class="eyebrow">Leave it better</div>
+          <h2>Respect the land. Preserve the story.</h2>
+          <p>Responsible detecting protects access to places we love and helps ensure the hobby can be enjoyed for years to come.</p>
+          <a class="button secondary" href="#contact">Ask About Club Guidelines</a>
+        </div>
+
+        <div class="feature-panel">
+          <h3>Our responsible detecting pledge</h3>
+          <ul class="checklist">
+            <li>Get permission before detecting on private property.</li>
+            <li>Check local rules and obtain required permits.</li>
+            <li>Respect parks, protected sites, and no-dig areas.</li>
+            <li>Fill every hole and pack out litter you find.</li>
+            <li>Handle historic or potentially significant finds thoughtfully.</li>
+            <li>Be courteous to landowners and the public.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="callout">
+      <div class="wrap inner">
+        <div>
+          <h2>Curious what’s beneath your feet?</h2>
+          <p>Meet fellow detectorists in the Bloomington, Illinois area and learn more about the club.</p>
+        </div>
+        <a class="button" href="#contact">Get in Touch →</a>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Come say hello</div>
+          <h2>Get involved with the club.</h2>
+          <p>Want to attend a meeting, ask a beginner question, or share a recent find? Reach out to learn about current club activities.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-box">
+            <h3>McLean County Metal Detecting Club</h3>
+            <p><strong>Based in</strong><br>Bloomington, Illinois</p>
+            <p><strong>Interested in joining?</strong><br>Ask about upcoming meetings, membership, and local detecting opportunities.</p>
+            <p class="note">Club email, phone number, meeting schedule, and social links can be added here once confirmed.</p>
+          </div>
+
+          <div class="contact-box">
+            <h3>Send an inquiry</h3>
+            <p>This sample page is ready to customize. Add your club’s preferred email address or contact form service to make this section live.</p>
+            <a class="button" href="mailto:ADD-CLUB-EMAIL-HERE?subject=McLean%20County%20Metal%20Detecting%20Club%20Inquiry">Email the Club</a>
+            <p class="note">Before publishing, replace the placeholder email link with the club’s real contact address.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year">2026</span> McLean County Metal Detecting Club</span>
+      <span>Bloomington, Illinois • Detect responsibly. Preserve history.</span>
+    </div>
+  </footer>
+</body>
+</html>
